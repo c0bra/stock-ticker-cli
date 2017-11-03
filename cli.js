@@ -9,6 +9,7 @@ const cliTruncate = require('cli-truncate');
 const logUpdate = require('log-update');
 const meow = require('meow');
 const orderBy = require('lodash/orderBy');
+const size = require('object-sizeof');
 
 const tops = 'https://ws-api.iextrading.com/1.0/tops';
 const quote = 'https://api.iextrading.com/1.0/stock/:stock/quote';
@@ -17,6 +18,7 @@ const socket = require('socket.io-client')(tops);
 // const stockTickerCli = require('.');
 
 const stats = {};
+let str = '';
 
 // const cli =
 meow(`
@@ -44,6 +46,8 @@ function startup() {
 
 		// Unsubscribe from topics (i.e. aig+)
 		// socket.emit('unsubscribe', 'aig+');
+		logUpdate('Waiting on data (if nothing happens then the markets may be closed)...');
+
 		startLog();
 	});
 
@@ -53,8 +57,10 @@ function startup() {
 
 function startLog() {
 	setInterval(() => log(), 1000);
+	setInterval(() => write(), 80);
 }
 
+let offset = 0;
 function log() {
 	const out = orderBy(stats, 'symbol')
 	.map(stock => {
@@ -72,7 +78,18 @@ function log() {
 	})
 	.join('  \u007C  ');
 
-	logUpdate(cliTruncate(out, process.stdout.columns));
+	str = out;
+}
+
+function write() {
+	if (!str) return;
+
+	// if (offset >= process.stdout.columns) offset = 0;
+
+	let out = str;
+	if (str.length > process.stdout.columns) out = str.substr(offset++);
+
+	logUpdate(cliTruncate(`${size(stats)} ${out}`, process.stdout.columns));
 }
 
 function getOpen(symbol) {

@@ -9,7 +9,9 @@
 		"email": "brian.hann@gmail.com",
 		"url": "n/A"
 	},
-	"bin": "cli.js",
+	"bin": {
+		"stock-ticker": "cli.js"
+	},
 	"engines": {
 		"node": ">=4"
 	},
@@ -32,6 +34,7 @@
 		"lodash": "^4.17.4",
 		"log-update": "^2.2.0",
 		"meow": "^3.7.0",
+		"object-sizeof": "^1.2.0",
 		"socket.io-client": "^2.0.4"
 	},
 	"devDependencies": {
