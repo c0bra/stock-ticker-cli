@@ -1,0 +1,41 @@
+{
+	"name": "stock-ticker-cli",
+	"version": "0.0.0",
+	"description": "My incredible module",
+	"license": "MIT",
+	"repository": "c0bra/stock-ticker-cli",
+	"author": {
+		"name": "Brian Hann",
+		"email": "brian.hann@gmail.com",
+		"url": "n/A"
+	},
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js",
+		"cli.js"
+	],
+	"keywords": [
+		"cli-app",
+		"cli",
+		""
+	],
+	"dependencies": {
+		"axios": "^0.17.0",
+		"chalk": "^2.3.0",
+		"cli-truncate": "^1.1.0",
+		"lodash": "^4.17.4",
+		"log-update": "^2.2.0",
+		"meow": "^3.7.0",
+		"socket.io-client": "^2.0.4"
+	},
+	"devDependencies": {
+		"ava": "^0.20.0",
+		"xo": "^0.18.2"
+	}
+}
