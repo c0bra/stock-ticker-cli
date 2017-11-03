@@ -7,7 +7,7 @@ const axios = require('axios');
 const chalk = require('chalk');
 const cliTruncate = require('cli-truncate');
 const logUpdate = require('log-update');
-const meow = require('meow')
+const meow = require('meow');
 const orderBy = require('lodash/orderBy');
 
 const tops = 'https://ws-api.iextrading.com/1.0/tops';
@@ -18,7 +18,8 @@ const socket = require('socket.io-client')(tops);
 
 const stats = {};
 
-const cli = meow(`
+// const cli =
+meow(`
 	Usage
 	  $ stock-ticker-cli
 
