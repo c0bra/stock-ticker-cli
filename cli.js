@@ -39,8 +39,6 @@ function startup() {
 	// Connect to the channel
 	socket.on('connect', () => {
 		// Subscribe to topics (i.e. appl,fb,aig+)
-		console.log(`Starting...`);
-
 		socket.emit('subscribe', 'firehose');
 
 		// Unsubscribe from topics (i.e. aig+)
